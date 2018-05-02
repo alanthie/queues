@@ -42,8 +42,7 @@ class spsc_bounded_queue_t
 {
 public:
 
-    spsc_bounded_queue_t(
-        size_t size) :
+    explicit spsc_bounded_queue_t(size_t size) :
         _size(size),
         _mask(size - 1),
         _buffer(reinterpret_cast<T*>(new aligned_t[_size + 1])), // need one extra element for a guard
@@ -93,19 +92,19 @@ private:
     typedef typename std::aligned_storage<sizeof(T), std::alignment_of<T>::value>::type aligned_t;
     typedef char cache_line_pad_t[64];
 
-    cache_line_pad_t    _pad0;
+    cache_line_pad_t    _pad0 = { 0 };
     const size_t        _size;
     const size_t        _mask;
     T* const            _buffer;
 
-    cache_line_pad_t    _pad1;
+    cache_line_pad_t    _pad1 = { 0 };
     std::atomic<size_t> _head;
 
-    cache_line_pad_t    _pad2;
+    cache_line_pad_t    _pad2 = { 0 };
     std::atomic<size_t> _tail;
 
-    spsc_bounded_queue_t(const spsc_bounded_queue_t&) {}
-    void operator=(const spsc_bounded_queue_t&) {}
+    spsc_bounded_queue_t(const spsc_bounded_queue_t&) = delete;
+    void operator=(const spsc_bounded_queue_t&) = delete;
 };
 
 #endif

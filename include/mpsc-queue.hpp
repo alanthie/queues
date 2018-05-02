@@ -96,8 +96,8 @@ private:
     std::atomic<buffer_node_t*> _head;
     std::atomic<buffer_node_t*> _tail;
 
-    mpsc_queue_t(const mpsc_queue_t&) {}
-    void operator=(const mpsc_queue_t&) {}
+    mpsc_queue_t(const mpsc_queue_t&) = delete;
+    void operator=(const mpsc_queue_t&) = delete;
 };
 
 #endif

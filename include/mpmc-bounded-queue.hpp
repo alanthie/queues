@@ -38,8 +38,7 @@ class mpmc_bounded_queue_t
 {
 public:
 
-    mpmc_bounded_queue_t(
-        size_t size) :
+    explicit mpmc_bounded_queue_t(size_t size) :
         _size(size),
         _mask(size - 1),
         _buffer(reinterpret_cast<node_t*>(new aligned_node_t[_size])),
@@ -151,18 +150,18 @@ private:
     typedef typename std::aligned_storage<sizeof(node_t), std::alignment_of<node_t>::value>::type aligned_node_t;
     typedef char cache_line_pad_t[64]; // it's either 32 or 64 so 64 is good enough
 
-    cache_line_pad_t    _pad0;
+    cache_line_pad_t    _pad0 = { 0 };
     const size_t        _size;
     const size_t        _mask;
     node_t* const       _buffer;
-    cache_line_pad_t    _pad1;
+    cache_line_pad_t    _pad1 = { 0 };
     std::atomic<size_t> _head_seq;
-    cache_line_pad_t    _pad2;
+    cache_line_pad_t    _pad2 = { 0 };
     std::atomic<size_t> _tail_seq;
-    cache_line_pad_t    _pad3;
+    cache_line_pad_t    _pad3 = { 0 };
 
-    mpmc_bounded_queue_t(const mpmc_bounded_queue_t&) {}
-    void operator=(const mpmc_bounded_queue_t&) {}
+    mpmc_bounded_queue_t(const mpmc_bounded_queue_t&) = delete;
+    void operator=(const mpmc_bounded_queue_t&) = delete;
 };
 
 #endif

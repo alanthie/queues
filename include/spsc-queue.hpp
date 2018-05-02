@@ -94,13 +94,13 @@ private:
 
     typedef typename std::aligned_storage<sizeof(node_t), std::alignment_of<node_t>::value>::type node_aligned_t;
 
-    node_t* _head;
-    char    _cache_line[64];
-    node_t* _tail;
-    node_t* _back;
+    node_t* _head = nullptr;
+    char    _cache_line[64] = { 0 };
+    node_t* _tail = nullptr;
+    node_t* _back = nullptr;
 
-    spsc_queue_t(const spsc_queue_t&) {}
-    void operator=(const spsc_queue_t&) {}
+    spsc_queue_t(const spsc_queue_t&) = delete;
+    void operator=(const spsc_queue_t&) = delete;
 };
 
 #endif

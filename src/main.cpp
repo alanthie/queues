@@ -9,7 +9,8 @@
 //#define COUNT 100000000
 #define COUNT 1000000
 
-template <typename T> void consumer_func(T *queue) {
+template <typename T> void consumer_func(T *queue) 
+{
   size_t count = COUNT;
   size_t value = 0;
 
@@ -35,23 +36,22 @@ template <typename T> void producer_func(T *queue) {
   }
 }
 
-template <typename T> long double run_test(T producer_func, T consumer_func) {
-  typedef std::chrono::high_resolution_clock clock_t;
-  typedef std::chrono::time_point<clock_t> time_t;
-  time_t start;
-  time_t end;
+template <typename T> long double run_test(T producer_func, T consumer_func) 
+{
+  typedef std::chrono::high_resolution_clock aclock_t;
+  typedef std::chrono::time_point<aclock_t> atime_t;
+  atime_t start;
+  atime_t end;
 
-  start = clock_t::now();
+  start = aclock_t::now();
   std::thread producer(producer_func);
   std::thread consumer(consumer_func);
 
   producer.join();
   consumer.join();
-  end = clock_t::now();
+  end = aclock_t::now();
 
-  return (end - start).count() *
-         ((double)std::chrono::high_resolution_clock::period::num /
-          std::chrono::high_resolution_clock::period::den);
+  return (end - start).count() * ((double)aclock_t::period::num / aclock_t::period::den);
 }
 
 int main() 

@@ -7,7 +7,7 @@
 #include "spsc-queue.hpp"
 
 //#define COUNT 100000000
-#define COUNT 1000000
+#define COUNT 2000000
 
 template <typename T> void consumer_func(T *queue) 
 {

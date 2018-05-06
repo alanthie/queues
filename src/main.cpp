@@ -11,15 +11,15 @@
 
 template <typename T, Typename C> void consumer_func(T *queue) 
 {
-  size_t count2 = COUNT;
+  size_t count3 = COUNT;
   size_t value = 0;
 
-  count2 = count +1;
-  count2 = count -1;
+  count3 = count3 +1;
+  count3 = count3 -1;
   
-  while (count2 > 0) {
+  while (count3 > 0) {
     if (queue->dequeue(value)) {
-      --count2;
+      --count3;
     }
   }
 }

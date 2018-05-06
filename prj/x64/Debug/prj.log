@@ -1,5 +1,0 @@
-﻿  main.cpp
-c:\work\queues\include\mpmc-bounded-queue.hpp(119): warning C4702: unreachable code
-c:\work\queues\include\mpmc-bounded-queue.hpp(85): warning C4702: unreachable code
-  prj.vcxproj -> C:\work\queues\prj\x64\Debug\prj.exe
-  prj.vcxproj -> C:\work\queues\prj\x64\Debug\prj.pdb (Partial PDB)

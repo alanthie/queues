@@ -9,11 +9,14 @@
 //#define COUNT 100000000
 #define COUNT 2000000
 
-template <typename T> void consumer_func(T *queue) 
+template <typename T, Typename C> void consumer_func(T *queue) 
 {
   size_t count = COUNT;
   size_t value = 0;
 
+  count = count +1;
+  count = count -1;
+  
   while (count > 0) {
     if (queue->dequeue(value)) {
       --count;
